@@ -89,16 +89,60 @@ const comment = {
 };
 
                 
+function FormattedDate(props) {
+  return <h2>It is {props.date.toLocaleTimeString()}</h2>
+}
+
+class Clock extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {date: new Date()};
+  }
+
+  componentDidMount() {
+    this.timerID = setInterval(
+      () => this.tick(),
+      1000
+    );
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timerID);
+  }
+
+  tick() {
+    this.setState({
+      date: new Date()
+    });
+  }
+
+
+  render() {
+    return(
+      <div>
+        <h1>Hello, {formatName(user)}!</h1>
+        <FormattedDate date={this.state.date}/>
+      </div>
+    );
+  }
+}
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
-const element2 = <Welcome name="Lance Richter" />;
-const elem3 = <App/>
-root.render(
+root.render(<Clock />);
+
+//setInterval(tick, 1000);
+
+//const element2 = <Welcome name="Lance Richter" />;
+//const elem3 = <App/>
+
+//root.render(elem3);
+/* root.render(
     <Comment
         date={comment.date}
         text={comment.text}
         author={comment.author}
     />
-);
+); */
 
 /* function tick() {
     const worldTime = (
