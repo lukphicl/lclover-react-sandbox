@@ -93,7 +93,8 @@ function FormattedDate(props) {
   return <h2>It is {props.date.toLocaleTimeString()}</h2>
 }
 
-class Clock extends React.Component {
+// Converting Component/Function to Class
+/* class Clock extends React.Component {
   constructor(props) {
     super(props)
     this.state = {date: new Date()};
@@ -125,10 +126,49 @@ class Clock extends React.Component {
       </div>
     );
   }
+} */
+
+// Handling Events
+
+class Toggle extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state={isToggleOn: true};
+
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    this.setState(prevState => ({
+      isToggleOn: !prevState.isToggleOn
+    }));
+  }
+
+  render() {
+    return(
+      <button onClick={this.handleClick}>
+        {this.state.isToggleOn ? 'ON' : 'OFF'}
+      </button>
+    );
+  }
+}
+
+class LoggingButton extends React.Component {
+
+  //binds 'this' to handleClicn
+  handleClick = () => {console.log('this is: ', this);};
+
+  render() {
+    return (
+      <button onClick={this.handleClick}>
+        Click Me!!!
+      </button>
+    );
+  }
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<Clock />);
+root.render(<LoggingButton/>);
 
 //setInterval(tick, 1000);
 
