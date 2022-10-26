@@ -169,7 +169,7 @@ class LoggingButton extends React.Component {
 
 // Conditional Rendering
 
-function UserGreeting(props) {
+/* function UserGreeting(props) {
   return <h1>Welcome back!</h1>
 }
 
@@ -287,10 +287,24 @@ class Page extends React.Component {
       </div>
     );
   }
+} */
+
+// Lists and Keys
+
+const numbers = [1,2,3,4,5,6];
+const listItems = numbers.map((number) => <li>{number}</li>);
+const listObject = <ul>{listItems}</ul>;
+
+function NumberList(props) {
+  const numbers = props.numbers;
+  const listItems = numbers.map((number) =>
+    <li key={number.toString()}>{number}</li>
+  );
+  return <ul>{listItems}</ul>
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-const elem = <Page/>
+const elem = <NumberList numbers={numbers}/>;
 root.render(elem);
 
 //setInterval(tick, 1000);
